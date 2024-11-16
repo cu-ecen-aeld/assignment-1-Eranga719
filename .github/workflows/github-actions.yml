@@ -1,26 +1,12 @@
-name: assignment-test
+name: assignment-autotest-test
 on: [push]
-#    push:
- #       tags-ignore:
-  #          - '*'
-   #     branches:
-    #        - '*'
 jobs:
-    unit-test:
-        container: cu-ecen-aeld/assignment-1-Eranga719/
-        runs-on: self-hosted
+    test:
+        container: cuaesd/aesd-autotest:unit-test
+        runs-on: ubuntu-latest
         steps:
           - uses: actions/checkout@v2
           - name: Checkout submodules
             run : git submodule update --init --recursive
           - name: Run unit test
-            run: ./unit-test.sh
-    full-test:
-        container: cu-ecen-aeld/assignment-1-Eranga719/
-        runs-on: self-hosted
-        steps:
-          - uses: actions/checkout@v2
-          - name: Checkout submodules
-            run : git submodule update --init --recursive
-          - name: Run full test
             run: ./full-test.sh
